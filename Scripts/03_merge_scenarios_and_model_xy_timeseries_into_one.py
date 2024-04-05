@@ -10,7 +10,7 @@ import os
 import pandas as pd
 
 # Directory where Parquet files are located
-directory = r'C:\Users\Chinmay\Downloads\extracted_parquet_files'
+directory = "/Volumes/Personal/streamflow/extracted_parquet_files"
 
 # Initialize an empty list 
 dfs = []

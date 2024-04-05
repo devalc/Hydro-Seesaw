@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import random
 
 # Specify the path to the extracted Parquet file
-parquet_file = "C:/USers/Chinmay/Downloads/discharge_weekAvg_output_E2O_hist_1979-01-07_to_1985-12-30.parquet"
+parquet_file = "/Volumes/Personal/streamflow/merged_all_models_and_all_scenarios.parquet"
 
 # Read the Parquet file into a DataFrame
 df = pd.read_parquet(parquet_file)
