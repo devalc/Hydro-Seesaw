@@ -5,21 +5,21 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 
 # Load the CSV file
-file_path = '/Users/sidchaudhary/Documents/GitHub/Hydro-Seesaw/Results/lat_lon_flag_counts_early_mid_end.csv'
+file_path = '/Users/sidchaudhary/Documents/GitHub/Hydro-Seesaw/Results/clean_lat_lon_flag_counts_early_mid_end.csv'
 data = pd.read_csv(file_path)
 
 # Categorize the flags into 5 classes based on specified ranges
 def categorize_flags(flag):
-    if flag < 50:
-        return 'Class 1'
-    elif 50 <= flag < 100:
-        return 'Class 2'
-    elif 100 <= flag < 150:
-        return 'Class 3'
-    elif 150 <= flag < 200:
-        return 'Class 4'
+    if flag < 75:
+        return '<75'
+    elif 75 <= flag < 150:
+        return '75-150'
+    elif 150 <= flag < 225:
+        return '150-225'
+    elif 225 <= flag < 300:
+        return '225-300'
     else:
-        return 'Class 5'
+        return '>300'
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
@@ -78,16 +78,16 @@ def update_map(selected_scenario, selected_time_period, selected_percentile):
         filtered_data,
         lat='lat',
         lon='long',
-        hover_name='station_name',
+        #hover_name='station_name',
         hover_data={'class': True, 'lat': False, 'long': False},
         color='class',
-        category_orders={'class': ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5']},
+        category_orders={'class': ['<75', '75-150', '150-225', '225-300', '>300']},
         color_discrete_map={
-            'Class 1': 'blue',
-            'Class 2': 'green',
-            'Class 3': 'yellow',
-            'Class 4': 'orange',
-            'Class 5': 'red'
+            '<75': 'blue',
+            '75-150': 'green',
+            '150-225': 'yellow',
+            '225-300': 'orange',
+            '>300': 'red'
         },
         zoom=1,  # Set initial zoom level to show the whole world
         center={"lat": 0, "lon": 0},  # Center the map at (0, 0)
