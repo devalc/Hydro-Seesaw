@@ -20,7 +20,6 @@ Usage:
 Author: devalc, Siddharth Chaudhary
 Date: 07/02/2024
 """
-
 import pandas as pd
 import geopandas as gpd
 import time
@@ -31,13 +30,17 @@ start_time = time.time()
 # File paths
 csv_file = './lat_lon_flag_counts_early_mid_end.csv'
 geojson_file = './grdc_stations_with_SWORD_reach_id_and_RiverATLAS_attr_merged.geojson'
-output_file = './merged_flags_and_grdc_with_riverATLAS.geojson'
+output_file = './merged_flags_and_grdc_with_riverATLAS.parquet'  
 
 # Read the CSV file
 csv_df = pd.read_csv(csv_file, usecols=lambda column: column not in [0])
 
 # Read the GeoJSON file
 geojson_gdf = gpd.read_file(geojson_file)
+
+# Drop the 'geometry' column if present
+if 'geometry' in geojson_gdf.columns:
+    geojson_gdf = geojson_gdf.drop(columns=['geometry'])
 
 # Rename 'grdc_no' column to 'station_name' in GeoDataFrame
 geojson_gdf = geojson_gdf.rename(columns={'grdc_no': 'station_name'})
@@ -48,8 +51,8 @@ common_columns = ['station_name', 'wmo_reg', 'sub_reg', 'river', 'station', 'cou
 # Merge the DataFrame and GeoDataFrame by the common columns
 merged_df = geojson_gdf.merge(csv_df, on=common_columns)
 
-# Output the result
-merged_df.to_file(output_file, driver='GeoJSON')
+# Output the result to Parquet format
+merged_df.to_parquet(output_file)
 
 # End timing the script
 end_time = time.time()
