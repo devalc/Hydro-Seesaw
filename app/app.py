@@ -19,8 +19,8 @@ st.set_page_config(
 )
 
 # Load the CSV file
-file_path = './data/lat_lon_flag_counts_early_mid_end_season.csv'
-data = pd.read_csv(file_path)
+file_path = './data/lat_lon_flag_counts_early_mid_end_season.parquet'
+data = pd.read_parquet(file_path)
 
 # Load the Parquet 
 parquet_file_path = './data/IPCC-WGI-reference-regions-v4.parquet'
