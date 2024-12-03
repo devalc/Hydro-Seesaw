@@ -19,11 +19,11 @@ st.set_page_config(
 )
 
 # Load the CSV file
-file_path = './data/lat_lon_flag_counts_early_mid_end_season.parquet'
+file_path = 'app/data/lat_lon_flag_counts_early_mid_end_season.parquet'
 data = pd.read_parquet(file_path)
 
 # Load the Parquet 
-parquet_file_path = './data/IPCC-WGI-reference-regions-v4.parquet'
+parquet_file_path = 'app/data/IPCC-WGI-reference-regions-v4.parquet'
 parquet_data = gpd.read_parquet(parquet_file_path)
 
 parquet_data = parquet_data.set_crs('EPSG:4326', allow_override=True)
