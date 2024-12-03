@@ -58,15 +58,6 @@ def categorize_flags_non_hist(flag):
     else:
         return ">375"
 
-
-st.markdown("""
-    <style>
-        .css-1d391kg {  /* Target the title container */
-            margin-top: -20px;  /* Adjust the space above the title */
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # App title
 st.title("FlowView: Visualizing Stream Conditions")
 
