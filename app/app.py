@@ -151,7 +151,7 @@ fig = px.scatter_mapbox(
     category_orders={'class': category_order},  
     zoom=2,                        
     center={"lat": 0, "lon": 0},  
-    height=900                    
+    height=700                    
 )
 
 # Add Parquet data layer as polygons
